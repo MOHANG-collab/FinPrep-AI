@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DATABASE_URL=sqlite:///./finprep.db
+      - JWT_SECRET=${JWT_SECRET:?Set JWT_SECRET in your environment}
+      - COOKIE_SECURE=false
+      - COOKIE_SAMESITE=lax
+      - MAX_UPLOAD_MB=10
+    volumes:
+      - uploads_data:/app/uploads
+      - db_data:/app/finprep.db
+
+volumes:
+  uploads_data:
+  db_data:

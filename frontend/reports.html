@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Reports — FinPrep AI</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="/assets/js/app.js" defer></script>
+</head>
+
+<body data-page="reports">
+    <div class="shell">
+        <aside class="sidebar"><a class="brand" href="/">FinPrep <b class="brand-ai">AI</b></a><a href="/dashboard.html">◫ Overview</a><a
+                href="/upload.html">⇧ Upload Dataset</a><a href="/profiling.html">◈ Data Profiling</a><a
+                href="/preprocessing.html">⚙ Preprocessing</a><a href="/analytics.html">▥ Analytics</a><a
+                href="/reports.html">▤ Reports</a><a href="/history.html">◷ History</a><a href="/pricing.html">◇
+                Pricing</a><a href="/settings.html">⚙ Settings</a><a href="#" onclick="logout();return false">↪
+                Logout</a></aside>
+        <main class="main">
+            <header class="topbar">
+                <h1>Reports & Exports</h1><span class="muted">Welcome, <b id="username">User</b></span>
+            </header>
+            <div id="message" hidden></div>
+            <div class="panel">
+                <div class="field"><label for="dataset">Filter by Dataset</label><select id="dataset">
+                        <option>Loading...</option>
+                    </select></div>
+                <p class="muted small">Filter reports by dataset or view all processed outputs below.</p>
+            </div>
+            <div class="panel">
+                <h2>Available Processed Exports</h2>
+                <p class="muted">Download cleaned datasets in CSV or Excel format, or generate a PDF data processing
+                    audit summary.</p>
+                <div id="results"></div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
