@@ -64,6 +64,20 @@ Without cloud credentials, SQLite and local file storage are used for developmen
 
 **Cloud services are not provisioned automatically by this ZIP.** The supplied code connects to your online Supabase project once you configure its credentials.
 
+## Deploy on Vercel
+
+Vercel uses the FastAPI preset and the custom application entrypoint declared in `pyproject.toml` (`backend.main:app`). Before deploying, configure these project environment variables in Vercel:
+
+- `DATABASE_URL`: Supabase PostgreSQL connection string using `postgresql+psycopg://...`
+- `SUPABASE_URL`: your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY`: server-only Supabase service-role key
+- `JWT_SECRET`: a long, randomly generated secret
+- `COOKIE_SECURE=true`
+
+Create private Supabase Storage buckets named `original-datasets` and `processed-datasets`. Vercel's function filesystem is not durable, so the default SQLite database and local `uploads/` storage are unsuitable for persistent production data. Do not upload `.env` or put server secrets in frontend code.
+
+Vercel Function request and response bodies are limited to 4.5 MB. This is lower than the app's default 10 MB upload limit, so larger uploads will be rejected by Vercel before the app can process them. Supporting larger uploads requires direct-to-object-storage uploads or another hosting approach.
+
 ## Endpoints
 
 - `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`
