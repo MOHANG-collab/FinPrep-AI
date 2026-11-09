@@ -34,6 +34,22 @@ const show = (message, error = false) => {
 
 const fmt = (n) => Number(n || 0).toLocaleString();
 
+function renderChart(canvas, config) {
+  if (!(canvas instanceof HTMLElement)) {
+    return null;
+  }
+
+  if (typeof window.Chart === 'undefined') {
+    const parent = canvas.parentElement;
+    if (parent) {
+      parent.innerHTML = '<p class="muted">Chart rendering is unavailable in this environment, but the analytics totals are still available above.</p>';
+    }
+    return null;
+  }
+
+  return new Chart(canvas, config);
+}
+
 const safe = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;',
@@ -449,76 +465,76 @@ async function analytics() {
       </div>
     `;
 
-    charts.forEach((c) => c.destroy());
+    charts.forEach((c) => c?.destroy());
     charts = [];
 
     if (d.by_category?.length) {
-      charts.push(
-        new Chart($('#categoryChart'), {
-          type: 'doughnut',
-          data: {
-            labels: d.by_category.map((x) => x.label),
-            datasets: [
-              {
-                data: d.by_category.map((x) => x.value),
-                backgroundColor: [
-                  '#2563EB',
-                  '#1D4ED8',
-                  '#0F172A',
-                  '#111827',
-                  '#16A34A',
-                  '#D97706',
-                  '#DC2626',
-                  '#2563EB'
-                ]
-              }
-            ]
-          },
-          options: {
-            plugins: {
-              legend: {
-                labels: { color: '#64748B' }
-              }
+      const categoryChart = renderChart($('#categoryChart'), {
+        type: 'doughnut',
+        data: {
+          labels: d.by_category.map((x) => x.label),
+          datasets: [
+            {
+              data: d.by_category.map((x) => x.value),
+              backgroundColor: [
+                '#2563EB',
+                '#1D4ED8',
+                '#0F172A',
+                '#111827',
+                '#16A34A',
+                '#D97706',
+                '#DC2626',
+                '#2563EB'
+              ]
+            }
+          ]
+        },
+        options: {
+          plugins: {
+            legend: {
+              labels: { color: '#64748B' }
             }
           }
-        })
-      );
+        }
+      });
+      if (categoryChart) charts.push(categoryChart);
     }
 
     if (d.by_month?.length) {
-      charts.push(
-        new Chart($('#monthChart'), {
-          type: 'line',
-          data: {
-            labels: d.by_month.map((x) => x.label),
-            datasets: [
-              {
-                label: `Total (${d.amount_column || 'Value'})`,
-                data: d.by_month.map((x) => x.value),
-                borderColor: '#2563EB',
-                backgroundColor: 'rgba(37, 99, 235, 0.15)',
-                fill: true,
-                tension: 0.35
-              }
-            ]
+      const monthChart = renderChart($('#monthChart'), {
+        type: 'line',
+        data: {
+          labels: d.by_month.map((x) => x.label),
+          datasets: [
+            {
+              label: `Total (${d.amount_column || 'Value'})`,
+              data: d.by_month.map((x) => x.value),
+              borderColor: '#2563EB',
+              backgroundColor: 'rgba(37, 99, 235, 0.15)',
+              fill: true,
+              tension: 0.35
+            }
+          ]
+        },
+        options: {
+          scales: {
+            x: { ticks: { color: '#64748B' } },
+            y: { ticks: { color: '#64748B' } }
           },
-          options: {
-            scales: {
-              x: { ticks: { color: '#64748B' } },
-              y: { ticks: { color: '#64748B' } }
-            },
-            plugins: {
-              legend: {
-                labels: { color: '#64748B' }
-              }
+          plugins: {
+            legend: {
+              labels: { color: '#64748B' }
             }
           }
-        })
-      );
+        }
+      });
+      if (monthChart) charts.push(monthChart);
     }
 
     if (!d.by_category?.length && !d.by_month?.length) {
       show('Provide date and category column names to render charts.');
+    } else if (typeof window.Chart === 'undefined') {
+      show('Analytics totals loaded; chart rendering is unavailable in this environment.');
     } else {
       show('');
     }

@@ -1,1 +1,47 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Financial Analytics — FinPrep AI</title><link rel="stylesheet" href="/assets/css/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script><script src="/assets/js/app.js" defer></script></head><body data-page="analytics"><div class="shell"><aside class="sidebar"><a class="brand" href="/">FinPrep <b class="brand-ai">AI</b></a><a href="/dashboard.html">◫ Overview</a><a href="/upload.html">⇧ Upload Dataset</a><a href="/profiling.html">◈ Data Profiling</a><a href="/preprocessing.html">⚙ Preprocessing</a><a href="/analytics.html">▥ Analytics</a><a href="/reports.html">▤ Reports</a><a href="/history.html">◷ History</a><a href="/pricing.html">◇ Pricing</a><a href="/settings.html">⚙ Settings</a><a href="#" onclick="logout();return false">↪ Logout</a></aside><main class="main"><header class="topbar"><h1>Financial Analytics</h1><span class="muted">Welcome, <b id="username">User</b></span></header><div id="message" hidden></div><div class="panel"><div class="field"><label for="dataset">Dataset</label><select id="dataset"><option>Loading...</option></select></div></div><div class="panel"><h2>Column Mapping</h2><p class="muted">Select or enter column names from your dataset. Totals are numeric aggregations, not accounting profit.</p><datalist id="colDatalist"></datalist><div class="formrow"><div class="field"><label>Amount column (blank = first numeric)</label><input id="amount" list="colDatalist" placeholder="e.g. Amount"></div><div class="field"><label>Date column</label><input id="date" list="colDatalist" placeholder="e.g. Date"></div><div class="field"><label>Category column</label><input id="category" list="colDatalist" placeholder="e.g. Category"></div></div><button class="btn" onclick="analytics()">Generate Analytics</button></div><div id="results"></div></main></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financial Analytics — FinPrep AI</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+</head>
+<body data-page="analytics">
+  <div class="shell">
+    <aside class="sidebar" aria-label="Workspace navigation">
+      <a class="brand" href="/">FinPrep <b class="brand-ai">AI</b></a>
+      <nav class="side-nav">
+        <a href="/dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="5" rx="1"/><rect x="13" y="11" width="7" height="9" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/></svg><span>Overview</span></a>
+        <a href="/upload.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4"/></svg><span>Upload Dataset</span></a>
+        <a href="/profiling.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15v-3m4 3V7m4 8v-5"/></svg><span>Data Profiling</span></a>
+        <a href="/preprocessing.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 6v5l5 4 5-4V6m-5 9v5"/></svg><span>Preprocessing</span></a>
+        <a href="/analytics.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5 9 13l3 2.5 7-8"/><path d="M15 7.5h4v4"/></svg><span>Analytics</span></a>
+        <a href="/reports.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10M7 8h10M7 12h6M5 3.75h14a1 1 0 0 1 1 1v14.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.75a1 1 0 0 1 1-1Z"/></svg><span>Reports</span></a>
+        <a href="/history.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span>History</span></a>
+        <a href="/pricing.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z"/><path d="m4.5 8.5 7.5 4 7.5-4M12 12.5v8"/></svg><span>Pricing</span></a>
+        <a href="/settings.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 15a2 2 0 0 0 0-6m-14 6a2 2 0 0 1 0-6m7-5v2m0 12v2M5 5l1.5 1.5m11 11L19 19M19 5l-1.5 1.5m-11 11L5 19"/></svg><span>Settings</span></a>
+      </nav>
+      <a class="side-logout" href="#" onclick="logout();return false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m4-4 4-3-4-3m4 3H9"/></svg><span>Log out</span></a>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><span class="page-kicker">Explore your numbers</span><h1>Financial analytics</h1></div><div class="user-chip"><span class="user-avatar" aria-hidden="true">F</span><span class="muted">Welcome, <b id="username">User</b></span></div></header>
+      <div id="message" hidden></div>
+      <div class="page-intro"><p>Map the columns in your dataset to explore totals and trends. Totals are numeric aggregations, not accounting profit.</p></div>
+      <section class="panel selector-panel"><div class="field"><label for="dataset">Dataset</label><select id="dataset"><option>Loading...</option></select></div></section>
+      <section class="panel analytics-controls">
+        <div class="panel-heading"><div><span class="page-kicker">Set up your view</span><h2>Column mapping</h2></div></div>
+        <datalist id="colDatalist"></datalist>
+        <div class="formrow">
+          <div class="field"><label for="amount">Amount column (blank = first numeric)</label><input id="amount" list="colDatalist" placeholder="e.g. Amount"></div>
+          <div class="field"><label for="date">Date column</label><input id="date" list="colDatalist" placeholder="e.g. Date"></div>
+          <div class="field"><label for="category">Category column</label><input id="category" list="colDatalist" placeholder="e.g. Category"></div>
+        </div>
+        <button class="btn" onclick="analytics()">Generate Analytics</button>
+      </section>
+      <div id="results" class="results-area"></div>
+    </main>
+  </div>
+</body>
+</html>

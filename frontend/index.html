@@ -7,125 +7,118 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css?v=3">
 </head>
-<body>
-  <nav class="landingnav">
+<body class="landing">
+  <nav class="landingnav" aria-label="Main navigation">
     <a class="brand" href="/">FinPrep <b class="brand-ai">AI</b></a>
     <div class="navlinks">
       <a href="#features">Features</a>
       <a href="#workflow">How It Works</a>
       <a href="/pricing.html">Pricing</a>
-      <a href="/login.html">Login</a>
-      <a class="btn" href="/register.html">Get Started Free</a>
+      <a href="/login.html">Log in</a>
+      <a class="btn" href="/register.html">Get Started</a>
     </div>
   </nav>
 
   <main>
     <section class="hero">
-      <div>
-        <div class="eyebrow">Financial intelligence starts with clean data</div>
-        <h1>Transform messy financial data into <em>actionable insights.</em></h1>
-        <p class="lead">Upload, validate, clean and analyze financial datasets in one secure workspace. Built for analysts, accountants and growing businesses.</p>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-mark"></span> A clearer view of your financial data</div>
+        <h1>Make messy data <em>make sense.</em></h1>
+        <p class="lead">Bring your financial files into one workspace to inspect data quality, apply cleaning steps, and explore useful summaries.</p>
         <div class="actions">
-          <a class="btn" href="/register.html">Get Started Free →</a>
+          <a class="btn" href="/register.html">Get Started Free <span aria-hidden="true">→</span></a>
           <a class="btn ghost" href="#features">Explore Features</a>
         </div>
-        <p class="muted small" style="margin-top:20px">✓ CSV + Excel Support &nbsp;•&nbsp; ✓ Private Storage &nbsp;•&nbsp; ✓ Interactive Emerald Analytics</p>
+        <p class="hero-note">CSV and Excel support <span aria-hidden="true">·</span> Preview changes <span aria-hidden="true">·</span> Export results</p>
       </div>
 
-      <div class="glass">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <b>Financial Overview</b>
-          <span class="pill">Live Preview</span>
+      <div class="product-preview" aria-label="FinPrep workflow overview">
+        <div class="preview-top">
+          <div class="preview-brand"><span class="preview-mark">F</span><div><strong>FinPrep workspace</strong><small>Data preparation flow</small></div></div>
+          <span class="preview-status"><span></span> Your workflow</span>
         </div>
-        <div class="statgrid" style="margin-top:20px">
-          <div class="stat">
-            <span class="muted">Data Quality</span>
-            <strong style="color:#2563EB">96%</strong>
-            <span class="accent">↑ Cleaned</span>
+        <div class="preview-file">
+          <span class="file-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 3.75h7l4.25 4.5v12H7a2 2 0 0 1-2-2v-12a2.5 2.5 0 0 1 2-2.5Z"/><path d="M14 4v5h4M8 13h8M8 16h8"/></svg>
+          </span>
+          <div><strong>Your dataset</strong><small>CSV or Excel file</small></div>
+          <span class="preview-arrow" aria-hidden="true">•••</span>
+        </div>
+        <div class="preview-steps">
+          <div class="preview-step">
+            <span class="step-number">01</span>
+            <div><strong>Inspect data quality</strong><small>Review missing values and duplicates</small></div>
+            <span class="step-check" aria-hidden="true">✓</span>
           </div>
-          <div class="stat">
-            <span class="muted">Transactions</span>
-            <strong style="color:#1D4ED8">8,421</strong>
-            <span class="muted">Analyzed</span>
+          <div class="preview-connector"></div>
+          <div class="preview-step">
+            <span class="step-number">02</span>
+            <div><strong>Preview cleaning</strong><small>Choose the changes that fit your data</small></div>
+            <span class="step-check" aria-hidden="true">✓</span>
           </div>
-          <div class="stat">
-            <span class="muted">Duplicates</span>
-            <strong style="color:#D97706">37</strong>
-            <span class="accent">Resolved</span>
+          <div class="preview-connector"></div>
+          <div class="preview-step">
+            <span class="step-number">03</span>
+            <div><strong>Explore and export</strong><small>Review summaries and download results</small></div>
+            <span class="step-check" aria-hidden="true">↗</span>
           </div>
         </div>
-
-        <h3 style="margin:20px 0 10px">Processing Activity</h3>
-        <div class="bars">
-          <span style="height:35%"></span>
-          <span style="height:55%"></span>
-          <span style="height:42%"></span>
-          <span style="height:75%"></span>
-          <span style="height:62%"></span>
-          <span style="height:95%"></span>
-          <span style="height:80%"></span>
-          <span style="height:100%"></span>
-        </div>
-        <p class="muted small" style="text-align:center;margin-top:12px">Interactive dashboard preview — powered by FinPrep AI engine.</p>
+        <div class="preview-footer"><span class="preview-dot"></span> You stay in control of each step</div>
       </div>
     </section>
 
     <section id="features" class="section">
-      <div class="eyebrow">Everything in one workspace</div>
-      <h2>Powerful tools for cleaner financial data</h2>
+      <div class="section-heading">
+        <div class="eyebrow">A practical toolkit</div>
+        <h2>Everything you need to prepare your data</h2>
+        <p class="muted">Move from raw files to clearer, reviewable results in a few focused steps.</p>
+      </div>
       <div class="features">
-        <div class="card">
-          <h3>◈ Smart Cleaning</h3>
-          <p>Handle missing values, inconsistent dates and messy numeric formats.</p>
-        </div>
-        <div class="card">
-          <h3>◉ Data Quality</h3>
-          <p>Profile columns, review nulls and detect exact duplicate records.</p>
-        </div>
-        <div class="card">
-          <h3>▥ File Processing</h3>
-          <p>Import CSV and Excel, then export cleaned datasets.</p>
-        </div>
-        <div class="card">
-          <h3>▤ Interactive Charts</h3>
-          <p>Explore monthly trends and category-level totals.</p>
-        </div>
-        <div class="card">
-          <h3>☷ Audit History</h3>
-          <p>Review processing jobs and revisit past outputs.</p>
-        </div>
-        <div class="card">
-          <h3>◇ Cloud Ready</h3>
-          <p>Connect to Supabase PostgreSQL and private cloud storage.</p>
-        </div>
+        <article class="card feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16M7 5v5l5 4 5-4V5M12 14v5m-4 0h8"/></svg></span>
+          <h3>Data cleaning</h3><p>Choose how to handle missing values, standardize dates, and remove exact duplicates.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15v-3m4 3V7m4 8v-5"/></svg></span>
+          <h3>Quality profiling</h3><p>Review column types, missing values, duplicate rows, and a sample of your data.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.75h7l4.25 4.5v12H7a2 2 0 0 1-2-2v-12a2.5 2.5 0 0 1 2-2.5Z"/><path d="M14 4v5h4M8 13h8M8 16h8"/></svg></span>
+          <h3>File processing</h3><p>Import CSV or Excel files, then save and download cleaned datasets.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18.5 9 13l3 2.5 7-8"/><path d="M15 7.5h4v4"/></svg></span>
+          <h3>Financial analytics</h3><p>Explore numeric totals, category breakdowns, and monthly trends from your data.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10M7 8h10M7 12h6M5 3.75h14a1 1 0 0 1 1 1v14.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.75a1 1 0 0 1 1-1Z"/></svg></span>
+          <h3>Processing history</h3><p>Return to saved processing jobs and access their export files.</p>
+        </article>
+        <article class="card feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 7.5h14M7.5 4v3.5M16.5 4v3.5M6 11h12v8.5H6zM9 14h2m2 0h2m-6 3h2"/></svg></span>
+          <h3>Review before saving</h3><p>Preview cleaning changes first while keeping the original upload available.</p>
+        </article>
       </div>
     </section>
 
-    <section id="workflow" class="section">
-      <h2>Four steps to better data</h2>
-      <div class="features" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))">
-        <div class="card">
-          <h3 style="color:#2563EB">01 · Upload</h3>
-          <p>Choose CSV or XLSX</p>
-        </div>
-        <div class="card">
-          <h3 style="color:#1D4ED8">02 · Inspect</h3>
-          <p>Find quality issues</p>
-        </div>
-        <div class="card">
-          <h3 style="color:#2563EB">03 · Clean</h3>
-          <p>Preview and apply changes</p>
-        </div>
-        <div class="card">
-          <h3 style="color:#1D4ED8">04 · Export</h3>
-          <p>Download reports</p>
-        </div>
+    <section id="workflow" class="section workflow-section">
+      <div class="section-heading">
+        <div class="eyebrow">A simple workflow</div>
+        <h2>From upload to usable output</h2>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-step"><span>01</span><h3>Upload</h3><p>Choose a CSV or XLSX dataset.</p></article>
+        <article class="workflow-step"><span>02</span><h3>Inspect</h3><p>Review a profile of the rows and columns.</p></article>
+        <article class="workflow-step"><span>03</span><h3>Prepare</h3><p>Preview the cleaning options you select.</p></article>
+        <article class="workflow-step"><span>04</span><h3>Export</h3><p>Download the processed file and report.</p></article>
       </div>
     </section>
   </main>
 
   <footer class="foot">
-    © 2026 FinPrep AI. Built for financial data clarity.
+    <a class="brand" href="/">FinPrep <b class="brand-ai">AI</b></a>
+    <span>Financial data preparation, made clearer.</span>
+    <span>© 2026 FinPrep AI</span>
   </footer>
 </body>
 </html>
