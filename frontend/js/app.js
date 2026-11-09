@@ -152,7 +152,7 @@ async function dashboard() {
                     <a class="btn ghost small" href="/profiling.html" onclick="sessionStorage.setItem('selected_dataset','${r.id}')">Profile</a>
                     <a class="btn ghost small" href="/analytics.html" onclick="sessionStorage.setItem('selected_dataset','${r.id}')">Analytics</a>
                     <a class="btn ghost small" href="/api/datasets/${r.id}/download" title="Download original file">Original</a>
-                    <button class="btn ghost small" style="color:#ef4444" onclick="deleteDataset(${r.id})">Delete</button>
+                    <button class="btn ghost small" style="color:#DC2626" onclick="deleteDataset(${r.id})">Delete</button>
                   </div>
                 </td>
               </tr>
@@ -327,7 +327,7 @@ async function profile() {
         <a class="btn" href="/preprocessing.html">Proceed to Preprocessing & Cleaning →</a>
         <a class="btn ghost" href="/analytics.html">Financial Analytics →</a>
         <a class="btn ghost" href="/api/datasets/${id}/download">Download Raw File</a>
-        <button class="btn ghost" style="color:#ef4444" onclick="deleteDataset(${id})">Delete Dataset</button>
+        <button class="btn ghost" style="color:#DC2626" onclick="deleteDataset(${id})">Delete Dataset</button>
       </div>
     `;
   } catch (e) {
@@ -418,17 +418,17 @@ async function analytics() {
       <div class="grid4">
         <div class="card">
           <div class="muted">Net Cash Flow (${safe(d.amount_column || 'N/A')})</div>
-          <div class="kpi" style="color:${isNetPositive ? '#22c55e' : '#ef4444'}">${d.total === null ? 'N/A' : (isNetPositive ? '+' : '') + fmt(d.total)}</div>
+          <div class="kpi" style="color:${isNetPositive ? '#16A34A' : '#DC2626'}">${d.total === null ? 'N/A' : (isNetPositive ? '+' : '') + fmt(d.total)}</div>
           <span class="small muted">${isNetPositive ? '↑ Net Positive' : '↓ Net Outflow'}</span>
         </div>
         <div class="card">
           <div class="muted">Total Inflow / Income</div>
-          <div class="kpi" style="color:#22c55e">${fmt(d.income || 0)}</div>
+          <div class="kpi" style="color:#16A34A">${fmt(d.income || 0)}</div>
           <span class="small muted">Positive credits</span>
         </div>
         <div class="card">
           <div class="muted">Total Outflow / Expenses</div>
-          <div class="kpi" style="color:#ef4444">${fmt(d.expense || 0)}</div>
+          <div class="kpi" style="color:#DC2626">${fmt(d.expense || 0)}</div>
           <span class="small muted">Negative debits</span>
         </div>
         <div class="card">
@@ -462,14 +462,14 @@ async function analytics() {
               {
                 data: d.by_category.map((x) => x.value),
                 backgroundColor: [
-                  '#10b981',
-                  '#2563eb',
-                  '#14b8a6',
-                  '#3b82f6',
-                  '#34d399',
-                  '#60a5fa',
-                  '#059669',
-                  '#1d4ed8'
+                  '#2563EB',
+                  '#1D4ED8',
+                  '#0F172A',
+                  '#111827',
+                  '#16A34A',
+                  '#D97706',
+                  '#DC2626',
+                  '#2563EB'
                 ]
               }
             ]
@@ -477,7 +477,7 @@ async function analytics() {
           options: {
             plugins: {
               legend: {
-                labels: { color: '#e2e8f0' }
+                labels: { color: '#64748B' }
               }
             }
           }
@@ -495,8 +495,8 @@ async function analytics() {
               {
                 label: `Total (${d.amount_column || 'Value'})`,
                 data: d.by_month.map((x) => x.value),
-                borderColor: '#10b981',
-                backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                borderColor: '#2563EB',
+                backgroundColor: 'rgba(37, 99, 235, 0.15)',
                 fill: true,
                 tension: 0.35
               }
@@ -504,12 +504,12 @@ async function analytics() {
           },
           options: {
             scales: {
-              x: { ticks: { color: '#8fa3b8' } },
-              y: { ticks: { color: '#8fa3b8' } }
+              x: { ticks: { color: '#64748B' } },
+              y: { ticks: { color: '#64748B' } }
             },
             plugins: {
               legend: {
-                labels: { color: '#e2e8f0' }
+                labels: { color: '#64748B' }
               }
             }
           }
